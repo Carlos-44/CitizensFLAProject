@@ -10,85 +10,39 @@ on:
 
 jobs:
   cypress-run:
+    # Run on the latest available Ubuntu runner
     runs-on: ubuntu-latest
-    timeout-minutes: 60  # Increased timeout
+    timeout-minutes: 60  # Set a timeout of 60 minutes for the job
 
     strategy:
       matrix:
-        browser: [chrome, firefox, edge]  # Cross-browser testing on different browsers
-
-    steps:
-      - name: Checkout the repository
-        uses: actions/checkout@v3
-
-      - name: Setup Node.js environment
-        uses: actions/setup-node@v3
-        with:
-          node-version: '16'
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Install Cypressname: Cypress Cross-Browser CI
-
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
-
-jobs:
-  cypress-run:
-    # This job runs on the latest Ubuntu image provided by GitHub
-    runs-on: ubuntu-latest
-    # Timeout set to 60 minutes, to avoid any timeout issues for long-running tests
-    timeout-minutes: 60
-
-    strategy:
-      matrix:
-        # We're running tests on multiple browsers (Chrome, Firefox, Edge) to ensure cross-browser compatibility
+        # Define browsers for cross-browser testing
         browser: [chrome, firefox, edge]
 
     steps:
-      # Step 1: Check out the repository code
+      # Step 1: Check out the repository
       - name: Checkout the repository
         uses: actions/checkout@v3
-        # This action checks out the source code to the GitHub Actions runner environment
 
       # Step 2: Set up Node.js environment
       - name: Setup Node.js environment
         uses: actions/setup-node@v3
         with:
-          node-version: '16'  # We're specifying Node.js version 16 for this project
-        # Using Node.js 16 ensures that we have the correct runtime to install and run Cypress
+          node-version: '16'
 
       # Step 3: Install project dependencies
       - name: Install dependencies
         run: npm install
-        # This step installs all the project dependencies defined in package.json, including Cypress
 
-      # Step 4: Install Cypress binary (if not already installed)
-      - name: Install Cypress
-        run: npm install cypress --save-dev
-        # Explicitly installing Cypress here, though it should already be in devDependencies
+      # Step 4: Set executable permissions for Cypress binary
+      - name: Set executable permissions for Cypress
+        run: chmod +x ./node_modules/.bin/cypress
 
-      # Step 5: Verify the installation of the Cypress binary
-      - name: Verify Cypress binary installation
-        run: npx cypress verify
-        # This step checks if the Cypress binary is correctly installed and available to run tests
-
-      # Step 6: Run Cypress tests
-      - name: Run Cypress tests
-        run: npx cypress run --browser ${{ matrix.browser }}
-        # Here, the tests are executed across the browsers specified in the matrix (Chrome, Firefox, Edge)
-        # The `matrix.browser` will dynamically pass the browser name into the Cypress command for testing
-
-        run: npm install cypress --save-dev
-
+      # Step 5: Verify the Cypress binary installation
       - name: Verify Cypress binary installation
         run: npx cypress verify
 
+      # Step 6: Run Cypress tests across different browsers
       - name: Run Cypress tests
         run: npx cypress run --browser ${{ matrix.browser }}
+
