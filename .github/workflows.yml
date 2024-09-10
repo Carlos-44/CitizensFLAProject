@@ -1,0 +1,35 @@
+name: Cypress Cross-Browser CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        browser: [chrome, firefox, edge] # Browsers for cross-browser testing
+
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Cypress tests on ${{ matrix.browser }}
+        env:
+          CYPRESS_BROWSER: ${{ matrix.browser }}
+        run: |
+          npx cypress run --browser $CYPRESS_BROWSER
