@@ -39,14 +39,14 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Set executable permissions for Cypress
+        run: chmod +x ./node_modules/.bin/cypress
+
       - name: Install Cypress binary
-        run: npx cypress install  # This will install the missing Cypress binary
+        run: npx cypress install
 
       - name: Verify Cypress binary installation
         run: npx cypress verify
-
-      - name: Set executable permissions for Cypress
-        run: chmod +x ./node_modules/.bin/cypress
 
       - name: Run Cypress tests
         run: npx cypress run --browser ${{ matrix.browser }}
