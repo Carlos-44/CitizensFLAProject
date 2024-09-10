@@ -43,15 +43,18 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # Step 5: Install Cypress (force Cypress to install if the cache fails)
+      # Step 5: Install Cypress binary
       - name: Install Cypress
         run: npm install cypress --save-dev
 
-      # Step 6: Verify the Cypress binary installation
+      # Step 6: Set Cypress binary permissions
+      - name: Set executable permissions for Cypress
+        run: chmod +x ./node_modules/.bin/cypress
+
+      # Step 7: Verify the Cypress binary installation
       - name: Verify Cypress binary installation
         run: npx cypress verify
 
-      # Step 7: Run Cypress tests
+      # Step 8: Run Cypress tests
       - name: Run Cypress tests
         run: npx cypress run --browser ${{ matrix.browser }}
-
