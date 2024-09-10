@@ -11,16 +11,14 @@ on:
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
-        browser: [chrome, firefox, edge] # Browsers for cross-browser testing
-
+        browser: [chrome, firefox, edge]
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v3
 
-      - name: Set up Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '16'
@@ -28,8 +26,10 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run Cypress tests on ${{ matrix.browser }}
+      - name: Run Cypress tests
+        run: npm run test:ci
         env:
+          # Add any needed Cypress environment variables
           CYPRESS_BROWSER: ${{ matrix.browser }}
-        run: |
-          npx cypress run --browser $CYPRESS_BROWSER
+
+    timeout-minutes: 10
