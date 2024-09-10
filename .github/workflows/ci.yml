@@ -28,16 +28,16 @@ jobs:
         with:
           node-version: '16'
 
-      # Step 3: Cache Cypress binary and Node modules
-      - name: Cache Cypress and Node modules
+      # Step 3: Cache Node modules and Cypress binary
+      - name: Cache Node modules and Cypress binary
         uses: actions/cache@v3
         with:
           path: |
-            ~/.npm
+            node_modules
             ~/.cache/Cypress
-          key: ${{ runner.os }}-cypress-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}-${{ matrix.browser }}
           restore-keys: |
-            ${{ runner.os }}-cypress-
+            ${{ runner.os }}-node-${{ matrix.browser }}
 
       # Step 4: Install project dependencies
       - name: Install dependencies

@@ -10,13 +10,11 @@ on:
 
 jobs:
   cypress-run:
-    # Run on the latest available Ubuntu runner
     runs-on: ubuntu-latest
-    timeout-minutes: 60  # Set a timeout of 60 minutes for the job
+    timeout-minutes: 60
 
     strategy:
       matrix:
-        # Define browsers for cross-browser testing
         browser: [chrome, firefox, edge]
 
     steps:
@@ -30,19 +28,33 @@ jobs:
         with:
           node-version: '16'
 
-      # Step 3: Install project dependencies
+      # Step 3: Cache Node modules and Cypress binary
+      - name: Cache Node modules and Cypress binary
+        uses: actions/cache@v3
+        with:
+          path: |
+            node_modules
+            ~/.cache/Cypress
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}-${{ matrix.browser }}
+          restore-keys: |
+            ${{ runner.os }}-node-${{ matrix.browser }}
+
+      # Step 4: Install project dependencies
       - name: Install dependencies
         run: npm install
 
-      # Step 4: Set executable permissions for Cypress binary
+      # Step 5: Install Cypress binary
+      - name: Install Cypress
+        run: npm install cypress --save-dev
+
+      # Step 6: Set Cypress binary permissions
       - name: Set executable permissions for Cypress
         run: chmod +x ./node_modules/.bin/cypress
 
-      # Step 5: Verify the Cypress binary installation
+      # Step 7: Verify the Cypress binary installation
       - name: Verify Cypress binary installation
         run: npx cypress verify
 
-      # Step 6: Run Cypress tests across different browsers
+      # Step 8: Run Cypress tests
       - name: Run Cypress tests
         run: npx cypress run --browser ${{ matrix.browser }}
-
