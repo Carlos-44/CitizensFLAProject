@@ -1,20 +1,36 @@
+name: Cypress Cross-Browser CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
     timeout-minutes: 30  # Increase the timeout to 30 minutes or adjust as needed
+
     strategy:
       matrix:
         browser: [chrome, firefox, edge]
+
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v3
+
       - name: Setup Node.js environment
         uses: actions/setup-node@v3
         with:
           node-version: '16'
+
       - name: Install dependencies
         run: npm install
+
       - name: Install Cypress
-        run: npm install cypress
+        run: npm install cypress --save-dev
+
       - name: Run Cypress tests
         run: npx cypress run --browser ${{ matrix.browser }}

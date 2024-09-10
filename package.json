@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test:ci": "cypress run"
   },
   "keywords": [],
   "author": "",
@@ -12,12 +12,5 @@
   "devDependencies": {
     "cypress": "^13.14.2",
     "cypress-xpath": "^2.0.1"
-  },
-  
-    "scripts": {
-      "test:ci": "cypress run"
-    }
   }
-  
-
-
+}
