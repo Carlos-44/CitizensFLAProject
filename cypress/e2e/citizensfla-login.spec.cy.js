@@ -2,7 +2,9 @@ import HomePage from '../page_objects/HomePage';
 import LoginPage from '../page_objects/LoginPage';
 import testData from '../data/testData';
 
-describe('Login Page - Negative', () => {
+// Skipped (Oct 2026): the live site replaced the login form with a dropdown that links to a
+// separate customer portal, so #loginAction / #j_username no longer exist. Needs rework.
+describe.skip('Login Page - Negative', () => {
     const homePage = new HomePage();
     const loginPage = new LoginPage();
 
