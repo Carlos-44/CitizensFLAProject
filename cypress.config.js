@@ -1,6 +1,11 @@
 const { defineConfig } = require('cypress');
 
 module.exports = defineConfig({
+  reporter: 'junit',
+  reporterOptions: {
+    mochaFile: 'cypress/results/results-[hash].xml',
+    toConsole: false,
+  },
   e2e: {
     baseUrl: 'https://www.citizensfla.com',
     viewportWidth: 1440,

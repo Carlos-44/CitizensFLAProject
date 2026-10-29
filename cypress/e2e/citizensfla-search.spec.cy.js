@@ -30,7 +30,7 @@ describe('Search Functionality', () => {
     it('should not display pagination for a term with few results', () => {
         homePage.searchFor(testData.homepage.searchTerms.fewResultsTerm);  // Search for a term with few results
         homePage.verifySearchResultsVisible();  // Verify that search results are visible
-        homePage.getPagination().should('exist');  // Verify pagination does not exist
+        homePage.getPagination().should('not.exist');  // Verify pagination does not exist
     });
 
     it('should clear search input and show default content', () => {
