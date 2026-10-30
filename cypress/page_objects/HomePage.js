@@ -46,10 +46,6 @@ class HomePage {
     return cy.get("#siteNavModalBtn_menu_6");
   }
 
-  loginLink() {
-    return cy.get('#loginAction');
-  }
-
   clickTermsAndConditions() {
     this.termsAndConditionsLink().should("be.visible").click();
   }
@@ -90,88 +86,6 @@ class HomePage {
     this.aboutUsButton().should("be.visible").and("contain", "About Us");
   }
 
-  clickLogin() {
-    this.loginLink().then(($el) => {
-      if ($el.is(":visible")) {
-        cy.wrap($el).click();
-      } else {
-        cy.wait(1000); // Retry after a short delay
-        this.loginLink().click(); // Retry clicking
-      }
-    });
-  }
-  getClaimsButton() {
-    return cy.get("button[id='siteNavModalBtn_menu_2'] span"); 
-  }
-
-  getClaimsModal() {
-    return cy.get(
-      "div[id='siteNavModalContent_2'] a[class='mr-4 text-decoration-none'] span"
-    ); 
-  }
-
-  getLink(linkPartialHref) {
-    return cy.get("a[href*='${linkPartialHref}']"); 
-   }
-
-  getContactCitizensFirstLink() {
-    return cy.get(
-      "div[id='siteNavModalContent_2'] div[class='row justify-content-start'] div:nth-child(1) a:nth-child(1) span:nth-child(1)"
-    ); 
-  }
-
-  getReportAClaimLink() {
-    return cy.get("a[href*='report-a-claim']"); 
-  }
-
-  getCatastropheClaimsLink() {
-    return cy.get("a[href*='catastrophe-claims']"); 
-  }
-
-  getSinkholeClaimsLink() {
-    return cy.get("a[href*='sinkhole-claims']"); 
-  }
-
-  getLossInspectionLink() {
-    return cy.get("a[href*='loss-inspection']"); 
-  }
-
-  getInsuranceFraudLink() {
-    return cy.get("a[href*='insurance-fraud']");
-  }
-
-  getModalContent() {
-    return cy.get(
-      "div[id='siteNavModalContent_2'] div[class='row justify-content-start']"
-    );
-  }
-
-  
-  openClaimsSection() {
-    this.getClaimsButton().click(); 
-  }
-
-  verifyClaimsModalVisible() {
-    this.getClaimsModal().should("be.visible"); 
-  }
-
-  verifyLinkVisible(linkPartialHref) {
-    this.getLink(linkPartialHref).should("be.visible"); 
-  }
-
-  clickLink(linkPartialHref) {
-    this.getLink(linkPartialHref).click({ force: true }); 
-  }
-
-  verifyUrlContains(partUrl) {
-    cy.url().should("include", partUrl); 
-  }
-
-    // Locator for search input
-    getSearchInput() {
-      return cy.get('[name="_com_liferay_portal_search_web_portlet_SearchPortlet_keywords"]');
-    }
-  
     // Locator for search results
     getSearchResultsHeader() {
       return cy.contains('Search Results');

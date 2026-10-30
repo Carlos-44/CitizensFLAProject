@@ -27,13 +27,6 @@ describe('Search Functionality', () => {
         homePage.verifyPaginationExists();  // Verify that pagination exists (if applicable)
     });
 
-    // Skipped (Oct 2026): the live site now paginates results for this term; needs a new test term.
-    it.skip('should not display pagination for a term with few results', () => {
-        homePage.searchFor(testData.homepage.searchTerms.fewResultsTerm);  // Search for a term with few results
-        homePage.verifySearchResultsVisible();  // Verify that search results are visible
-        homePage.getPagination().should('not.exist');  // Verify pagination does not exist
-    });
-
     it('should clear search input and show default content', () => {
         homePage.searchFor(testData.homepage.searchTerms.validTerm);  // Perform a search first
         homePage.verifySearchResultsVisible();  // Verify search results

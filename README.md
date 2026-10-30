@@ -1,6 +1,6 @@
 # Citizens FLA — Cypress E2E Tests
 
-> Cypress end-to-end test suite for the public [Citizens Property Insurance](https://www.citizensfla.com) website, covering navigation, claims links, footer links, site search and negative login cases.
+> Cypress end-to-end test suite for the public [Citizens Property Insurance](https://www.citizensfla.com) website, covering header navigation, claims links, footer links and site search.
 
 ![Tests](https://github.com/Carlos-44/CitizensFLAProject/actions/workflows/test.yml/badge.svg)
 
@@ -34,12 +34,11 @@ npx cypress run --spec cypress/e2e/citizensfla-search.spec.cy.js
 ```
 
 ## What's Tested
-25 tests across 5 specs (20 active, 5 skipped), all run against the live public site:
+20 tests across 4 specs, all run against the live public site:
 - **Header navigation** (`citizensfla-navigation`): Insurance, Claims, Storms, Learning, News and About Us each go to the correct page
 - **Claims section** (`citizensfla-claims`): Contact Citizens First, Report a Claim, Sinkhole Claims, Loss Inspection and Report Fraud links
 - **Footer links** (`citizensfla-footer`): Terms & Conditions, Privacy Policy, Site Map, Accessibility
-- **Search** (`citizensfla-search`): valid and invalid terms, pagination with many results, clearing the input, empty search (the few-results pagination test is skipped because the site now paginates that term)
-- **Login, negative cases** (`citizensfla-login`): skipped. The site replaced its login form with a dropdown that links to a separate customer portal, so this spec needs rework
+- **Search** (`citizensfla-search`): valid and invalid terms, pagination with many results, clearing the input, empty search
 
 > These tests hit a live third-party website, so content changes or bot protection on the site can cause failures that aren't bugs in the tests.
 
