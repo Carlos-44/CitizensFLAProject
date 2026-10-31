@@ -6,14 +6,24 @@
     "test": "cypress run",
     "test:open": "cypress open",
     "test:chrome": "cypress run --browser chrome",
-    "test:ci": "cypress run"
+    "test:ci": "cypress run",
+    "test:bdd": "cypress run --spec 'cypress/e2e/**/*.feature'",
+    "test:bdd:open": "cypress open --spec 'cypress/e2e/**/*.feature'"
   },
   "keywords": [],
   "author": "Carlos Ozoria",
   "license": "ISC",
-  "description": "Cypress E2E tests (Page Object Model) for the public Citizens Property Insurance website",
+  "description": "Cypress E2E tests (Page Object Model + BDD/Cucumber) for the public Citizens Property Insurance website",
   "devDependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "^21.0.2",
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.2.5",
     "cypress": "^13.14.2",
     "cypress-xpath": "^2.0.1"
+  },
+  "cypress-cucumber-preprocessor": {
+    "nonGlobalStepDefinitions": false,
+    "stepDefinitions": "cypress/support/step_definitions/**/*.js",
+    "filterSpecs": true,
+    "omitFiltered": true
   }
 }
