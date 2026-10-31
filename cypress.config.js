@@ -1,4 +1,7 @@
 const { defineConfig } = require('cypress');
+const createBundler = require('@bahmutov/cypress-esbuild-preprocessor');
+const { addCucumberPreprocessorPlugin } = require('@badeball/cypress-cucumber-preprocessor');
+const { createEsbuildPlugin } = require('@badeball/cypress-cucumber-preprocessor/esbuild');
 
 module.exports = defineConfig({
   reporter: 'cypress-multi-reporters',
@@ -19,8 +22,22 @@ module.exports = defineConfig({
   },
   e2e: {
     baseUrl: 'https://www.citizensfla.com',
-    setupNodeEvents(on, config) {
+    async setupNodeEvents(on, config) {
+      // Cucumber BDD preprocessor plugin (must register before bundler)
+      await addCucumberPreprocessorPlugin(on, config);
+
+      // esbuild bundler with Cucumber support for .feature files
+      on(
+        'file:preprocessor',
+        createBundler({
+          plugins: [createEsbuildPlugin(config)],
+        })
+      );
+
+      // Mochawesome reporter
       require('cypress-mochawesome-reporter/plugin')(on);
+
+      return config;
     },
     viewportWidth: 1440,
     viewportHeight: 900,
@@ -29,7 +46,7 @@ module.exports = defineConfig({
       openMode: 1,
     },
     defaultCommandTimeout: 30000,
-    specPattern: 'cypress/e2e/**/*.cy.{js,jsx,ts,tsx}',
+    specPattern: 'cypress/e2e/**/*.{cy.js,cy.jsx,cy.ts,cy.tsx,feature}',
     supportFile: 'cypress/support/e2e.js',
   },
 });
