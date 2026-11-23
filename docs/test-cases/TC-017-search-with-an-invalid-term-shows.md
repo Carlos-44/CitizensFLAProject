@@ -1,8 +1,9 @@
 # TC-017: Search with an invalid term shows no results
 
 - **Priority:** P2
-- **Status:** Manual only
-- **Automation:** Manual only: live production site. An automated scenario exists in `cypress/e2e/features/search.feature` ("Search with an invalid term shows no results"). Not run in this work.
+- **Linked criteria:** F-04 AC-02 ([F-04](../features/F-04-search-functionality.md))
+- **Status:** Automated
+- **Automation:** cypress/e2e/citizensfla-search.spec.cy.js — "[TC-017] should display "No results found" for an invalid search term"
 
 ## Preconditions
 - https://www.citizensfla.com is reachable.
@@ -18,3 +19,7 @@
 | 1 | I search for "xyzzy123notfound". | The no results message should be displayed. |
 
 **Pass criteria:** The no results message should be displayed.
+
+## Notes
+- Passed locally 2026-11-23 (Node 20.20.2, Cypress 13.14.2, Electron headless, against citizensfla.com): 40/40 (20 Cypress tests + 20 Cucumber scenarios).
+- Also automated as the Cucumber scenario "[TC-017] Search with an invalid term shows no results" in `cypress/e2e/features/search.feature`.

@@ -1,8 +1,9 @@
 # TC-019: Clearing search input restores default content
 
 - **Priority:** P2
-- **Status:** Manual only
-- **Automation:** Manual only: live production site. An automated scenario exists in `cypress/e2e/features/search.feature` ("Clearing search input restores default content"). Not run in this work.
+- **Linked criteria:** F-04 AC-04 ([F-04](../features/F-04-search-functionality.md))
+- **Status:** Automated
+- **Automation:** cypress/e2e/citizensfla-search.spec.cy.js — "[TC-019] should clear search input and show default content"
 
 ## Preconditions
 - https://www.citizensfla.com is reachable.
@@ -19,3 +20,7 @@
 | 2 | I clear the search input. | The search input should be empty; the homepage responsive image should be visible. |
 
 **Pass criteria:** The search input should be empty; the homepage responsive image should be visible.
+
+## Notes
+- Passed locally 2026-11-23 (Node 20.20.2, Cypress 13.14.2, Electron headless, against citizensfla.com): 40/40 (20 Cypress tests + 20 Cucumber scenarios).
+- Also automated as the Cucumber scenario "[TC-019] Clearing search input restores default content" in `cypress/e2e/features/search.feature`.

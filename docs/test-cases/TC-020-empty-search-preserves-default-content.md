@@ -1,8 +1,9 @@
 # TC-020: Empty search preserves default content
 
 - **Priority:** P2
-- **Status:** Manual only
-- **Automation:** Manual only: live production site. An automated scenario exists in `cypress/e2e/features/search.feature` ("Empty search preserves default content"). Not run in this work.
+- **Linked criteria:** F-04 AC-05 ([F-04](../features/F-04-search-functionality.md))
+- **Status:** Automated
+- **Automation:** cypress/e2e/citizensfla-search.spec.cy.js — "[TC-020] should handle an empty search gracefully"
 
 ## Preconditions
 - https://www.citizensfla.com is reachable.
@@ -18,3 +19,7 @@
 | 1 | I search for "". | The homepage responsive image should be visible. |
 
 **Pass criteria:** The homepage responsive image should be visible.
+
+## Notes
+- Passed locally 2026-11-23 (Node 20.20.2, Cypress 13.14.2, Electron headless, against citizensfla.com): 40/40 (20 Cypress tests + 20 Cucumber scenarios).
+- Also automated as the Cucumber scenario "[TC-020] Empty search preserves default content" in `cypress/e2e/features/search.feature`.

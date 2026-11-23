@@ -1,8 +1,9 @@
 # TC-016: Search with a valid term returns results
 
 - **Priority:** P2
-- **Status:** Manual only
-- **Automation:** Manual only: live production site. An automated scenario exists in `cypress/e2e/features/search.feature` ("Search with a valid term returns results"). Not run in this work.
+- **Linked criteria:** F-04 AC-01 ([F-04](../features/F-04-search-functionality.md))
+- **Status:** Automated
+- **Automation:** cypress/e2e/citizensfla-search.spec.cy.js — "[TC-016] should search for a valid term and display results"
 
 ## Preconditions
 - https://www.citizensfla.com is reachable.
@@ -18,3 +19,7 @@
 | 1 | I search for "insurance". | The search results page should be visible. |
 
 **Pass criteria:** The search results page should be visible.
+
+## Notes
+- Passed locally 2026-11-23 (Node 20.20.2, Cypress 13.14.2, Electron headless, against citizensfla.com): 40/40 (20 Cypress tests + 20 Cucumber scenarios).
+- Also automated as the Cucumber scenario "[TC-016] Search with a valid term returns results" in `cypress/e2e/features/search.feature`.
