@@ -8,19 +8,19 @@ describe('Footer Links', () => {
         cy.scrollTo('bottom'); // Scroll to the bottom of the page
     });
 
-    it('should have a Terms & Conditions link and click it', () => {
+    it('[TC-006] should have a Terms & Conditions link and click it', () => {
         homePage.clickTermsAndConditions();
     });
 
-    it('should have a Privacy Policy link and click it', () => {
+    it('[TC-007] should have a Privacy Policy link and click it', () => {
         homePage.clickPrivacyPolicy();
     });
 
-    it('should have a Site Map link and click it', () => {
+    it('[TC-008] should have a Site Map link and click it', () => {
         homePage.clickSiteMap();
     });
 
-    it('should have an Accessibility link and click it', () => {
+    it('[TC-009] should have an Accessibility link and click it', () => {
         homePage.clickAccessibility();
     });
 });

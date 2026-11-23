@@ -7,18 +7,18 @@ Feature: Footer Links
     Given I am on the Citizens Property Insurance homepage
     And I scroll to the bottom of the page
 
-  Scenario: Click Terms and Conditions link
+  Scenario: [TC-006] Click Terms and Conditions link
     When I click the "Terms & Conditions" footer link
     Then the Terms and Conditions page should open
 
-  Scenario: Click Privacy Policy link
+  Scenario: [TC-007] Click Privacy Policy link
     When I click the "Privacy Policy" footer link
     Then the Privacy Policy page should open
 
-  Scenario: Click Site Map link
+  Scenario: [TC-008] Click Site Map link
     When I click the "Site Map" footer link
     Then the Site Map page should open
 
-  Scenario: Click Accessibility link
+  Scenario: [TC-009] Click Accessibility link
     When I click the "Accessibility" footer link
     Then the Accessibility page should open

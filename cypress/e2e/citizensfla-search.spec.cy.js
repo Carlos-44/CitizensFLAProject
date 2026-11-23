@@ -10,24 +10,24 @@ describe('Search Functionality', () => {
         homePage.verifyResponsiveImageExists(); // Ensure the image exists after visiting
     });
 
-    it('should search for a valid term and display results', () => {
+    it('[TC-016] should search for a valid term and display results', () => {
         homePage.searchFor(testData.homepage.searchTerms.validTerm);  // Search for a valid term
         homePage.verifySearchResultsVisible();  // Verify that search results are visible
         homePage.verifySearchResultsCount();  // Verify that search results are non-zero
     });
 
-    it('should display "No results found" for an invalid search term', () => {
+    it('[TC-017] should display "No results found" for an invalid search term', () => {
         homePage.searchFor(testData.homepage.searchTerms.invalidTerm);  // Search for an invalid term
         homePage.verifyNoResults();  // Verify that no results message is shown
     });
 
-    it('should display pagination for a term with many results', () => {
+    it('[TC-018] should display pagination for a term with many results', () => {
         homePage.searchFor(testData.homepage.searchTerms.commonTerm);  // Search for a common term
         homePage.verifySearchResultsVisible();  // Verify that search results are visible
         homePage.verifyPaginationExists();  // Verify that pagination exists (if applicable)
     });
 
-    it('should clear search input and show default content', () => {
+    it('[TC-019] should clear search input and show default content', () => {
         homePage.searchFor(testData.homepage.searchTerms.validTerm);  // Perform a search first
         homePage.verifySearchResultsVisible();  // Verify search results
         homePage.getSearchInput().clear();  // Clear the search input
@@ -35,7 +35,7 @@ describe('Search Functionality', () => {
         homePage.verifyResponsiveImageExists();  // Verify that the default image content is displayed again
     });
 
-    it('should handle an empty search gracefully', () => {
+    it('[TC-020] should handle an empty search gracefully', () => {
         homePage.searchFor(testData.homepage.searchTerms.emptyTerm);  // Perform an empty search
         homePage.verifyResponsiveImageExists();  // Ensure default content is still displayed
     });

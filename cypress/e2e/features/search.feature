@@ -7,25 +7,25 @@ Feature: Search Functionality
     Given I am on the Citizens Property Insurance homepage with a 1400x900 viewport
     And the homepage responsive image is visible
 
-  Scenario: Search with a valid term returns results
+  Scenario: [TC-016] Search with a valid term returns results
     When I search for "insurance"
     Then the search results page should be visible
 
-  Scenario: Search with an invalid term shows no results
+  Scenario: [TC-017] Search with an invalid term shows no results
     When I search for "xyzzy123notfound"
     Then the no results message should be displayed
 
-  Scenario: Search with a common term shows pagination
+  Scenario: [TC-018] Search with a common term shows pagination
     When I search for "coverage"
     Then the search results page should be visible
     And the pagination should be present
 
-  Scenario: Clearing search input restores default content
+  Scenario: [TC-019] Clearing search input restores default content
     When I search for "insurance"
     And I clear the search input
     Then the search input should be empty
     And the homepage responsive image should be visible
 
-  Scenario: Empty search preserves default content
+  Scenario: [TC-020] Empty search preserves default content
     When I search for ""
     Then the homepage responsive image should be visible
