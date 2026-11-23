@@ -230,10 +230,6 @@ class HomePage {
     clickNewsButton() {
       this.newsButton().should('be.visible').click();
     }
-  
-    clickAboutUsButton() {
-      this.aboutUsButton().should('be.visible').click();
-    }
      // Button locators for navigation
   insuranceButton() {
     return cy.get("#siteNavModalBtn_menu_1");
