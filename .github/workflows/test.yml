@@ -65,6 +65,11 @@ jobs:
         with:
           install: false
           browser: chrome
+          # Run only the Cypress specs in CI. The Cucumber feature files cover the same
+          # cases against the same live site; running both doubled the load on
+          # citizensfla.com and led to network timeouts. Run features locally with
+          # `npm run test:bdd`.
+          spec: cypress/e2e/**/*.cy.js
 
       - name: Upload test results
         uses: actions/upload-artifact@v4
